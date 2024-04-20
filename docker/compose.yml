@@ -1,0 +1,40 @@
+version: '3.8'
+networks:
+  backend:
+    name: "${COMPOSE_PROJECT_NAME}"
+services:
+  php-apache:
+    build:
+      context: ../
+      dockerfile: ./docker/php-apache/Dockerfile
+      # target: local
+    image: laravel/php-apache
+    container_name: "${COMPOSE_PROJECT_NAME}.php-apache"
+    ports:
+      - ${WEB_PORT}:80
+    volumes:
+      - ../src:/var/www/html/
+      - ./php-apache/conf/default.conf:/etc/apache2/sites-enabled/000-default.conf
+      # - ./my-php.ini:/usr/local/etc/php/conf.d/my-php.ini
+    init: true
+    networks:
+      - "backend"
+    depends_on:
+      - db
+  db:
+    container_name: "${COMPOSE_PROJECT_NAME}.pgsql"
+    image: "postgres:16-alpine"
+    volumes:
+      - "db_write:/var/lib/postgresql/data"
+    environment:
+      POSTGRES_USER: default
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: app
+      TZ: "Asia/Tokyo"
+    ports:
+      - "5432:5432"
+    networks:
+      - "backend"
+volumes:
+  db_write:
+  db_read:
