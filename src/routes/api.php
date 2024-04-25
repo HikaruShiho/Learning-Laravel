@@ -8,4 +8,7 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-Route::get('/demo', [DemoController::class, 'index']);
+
+Route::group(['middleware' => 'auth:sanctum'], function () {
+    Route::get('/demo', [DemoController::class, 'index']);
+});
