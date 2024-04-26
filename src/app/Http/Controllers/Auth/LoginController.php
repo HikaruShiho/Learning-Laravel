@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class LoginController extends Controller
 {
@@ -26,5 +25,14 @@ class LoginController extends Controller
                 'message' => 'The provided credentials do not match our records.',
             ], 401);
         }
+    }
+
+    public function logout()
+    {
+        Auth::user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Successfully logged out.',
+        ]);
     }
 }
