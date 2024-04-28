@@ -12,7 +12,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $this->token_name = $request['email'] . '_' . now()->timestamp;
+        $this->token_name = $request['email'].'_'.now()->timestamp;
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],

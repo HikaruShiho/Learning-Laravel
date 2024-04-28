@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Task\Task;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class TaskSeeder extends Seeder
@@ -16,7 +15,7 @@ class TaskSeeder extends Seeder
         Task::create([
             'name' => 'Task 1',
             'description' => 'Description for Task 1',
-            'is_completed' => false
+            'is_completed' => false,
         ]);
     }
 }

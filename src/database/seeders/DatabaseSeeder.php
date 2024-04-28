@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -12,7 +12,7 @@ class DatabaseSeeder extends Seeder
      * https://laravel.com/docs/11.x/seeding#muting-model-events
      */
     use WithoutModelEvents;
-    
+
     /**
      * Seed the application's database.
      */
