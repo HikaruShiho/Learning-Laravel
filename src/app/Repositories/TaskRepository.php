@@ -9,7 +9,7 @@ class TaskRepository implements TaskInterface
 {
     public function index()
     {
-        return Task::all();
+        return Task::paginate(20);
     }
 
     public function store(array $data)
